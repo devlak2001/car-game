@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/static/images/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Muscle car game</title>
+  </head>
+  <body style="opacity: 0">
+    <div id="ui">
+      <div class="startScreen">
+        <img src="static/images/startScreenImage.png" alt="" />
+        <button id="startButton"><span>START</span></button>
+      </div>
+      <div class="userScore">
+        <img src="./static/images/star.svg" alt="" />
+        <div>
+          <div class="number">0000</div>
+          <div class="bestScore">Best score: 0000</div>
+        </div>
+      </div>
+      <div class="gameOver">
+        <img src="static/images/gameOverImage.png" alt="" />
+        <button id="restartButton"><span>RESTART</span></button>
+      </div>
+    </div>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

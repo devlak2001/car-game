@@ -1,0 +1,117 @@
+.gameOver,
+.startScreen {
+  display: flex;
+  pointer-events: none;
+  background-color: #e2e3d6;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  img {
+    width: 90%;
+    height: auto;
+    @media (min-width: 600px) {
+      width: 540px;
+    }
+  }
+  button {
+    font-size: 6.1vw;
+    font-family: Inter;
+    color: #02151c;
+    padding: 0.5em 1em;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 0.35em;
+    border: 2px solid #02151c;
+    border-radius: 0;
+    background-color: transparent;
+    position: relative;
+    bottom: 10vw;
+    span {
+      margin-left: 0.35em;
+    }
+    @media (min-width: 600px) {
+      font-size: 36.6px;
+      bottom: 60px;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.userScore {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: #03161e;
+  width: 45vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 45vw * 0.3;
+  border-radius: 56vw;
+  @media (min-width: 600px) {
+    width: 280px;
+    height: 280px * 0.3;
+  }
+  img {
+    height: 50%;
+    width: auto;
+  }
+  div {
+    div {
+      line-height: 0.9;
+    }
+    .number {
+      font-family: Inter;
+      color: #ffe680;
+      font-weight: 700;
+      font-size: 7.12vw;
+      margin-bottom: 0.05em;
+      @media (min-width: 600px) {
+        font-size: 42.72px;
+      }
+    }
+    .bestScore {
+      color: #ffe680;
+      font-weight: 500;
+      font-size: 3vw;
+      @media (min-width: 600px) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.gameOver.show {
+  pointer-events: all;
+  transition: opacity 0.7s ease;
+  opacity: 1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.startScreen {
+  opacity: 1;
+  pointer-events: all;
+  background-color: #e9673b;
+  button {
+    color: #f9f8f8;
+    border-color: #f9f8f8;
+  }
+  &.hide {
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+    opacity: 0;
+  }
+}

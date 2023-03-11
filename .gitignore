@@ -1,0 +1,6 @@
+*.pem
+/dist
+*.blend
+*.blend1
+/node_modules
+*.zip
