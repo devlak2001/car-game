@@ -184,6 +184,7 @@ function InitializeScene() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.prepend(renderer.domElement);
   renderer.setClearColor(0x32cd32, 1);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   // Add resize listener to update the renderer and camera
   window.addEventListener("resize", () => {
