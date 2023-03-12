@@ -163,7 +163,6 @@ function InitializeScene() {
   );
   scene.add(camera);
   camera.position.set(0, 60, 0);
-  camera.position.y = 60;
   camera.rotation.x = -Math.PI / 4;
   // camera.rotation.x = -Math.PI / 4;
 
