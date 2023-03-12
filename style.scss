@@ -1,3 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  transform-origin: center;
+  transform: rotate(0);
+}
+
+a {
+  text-decoration: inherit;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#ui,
+#worldScene,
+html,
+body,
+canvas {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#worldScene canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  transition: transform 0.3s ease;
+}
+
+#ui {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version */
+}
+
 .gameOver,
 .startScreen {
   display: flex;
@@ -79,6 +131,7 @@
       }
     }
     .bestScore {
+      font-family: Inter;
       color: #ffe680;
       font-weight: 500;
       font-size: 3vw;
