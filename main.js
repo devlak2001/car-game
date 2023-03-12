@@ -46,24 +46,6 @@ const tracks = [
   },
 ];
 
-// const wallAvatars = [
-//   "matosh.png",
-//   "jofo.png",
-//   "mugi.png",
-//   "zivorad.png",
-//   "sasser.png",
-//   "coa.png",
-//   "aleksa.png",
-//   "jasmina.png",
-//   "devla.png",
-//   "pavle.png",
-//   "sharan.png",
-//   "mig.png",
-//   "svp.png",
-//   "rus.png",
-//   "curtmax.png",
-// ];
-
 const wallAvatars = [
   "capybara.jpg",
   "hedgehog.jpg",
@@ -72,26 +54,6 @@ const wallAvatars = [
   "quokka.jpg",
   "sea-otter.jpg",
 ];
-
-// const wallAvatars = [
-//   "chrisl.png",
-//   "chrism.png",
-//   "alex.png",
-//   "basak.png",
-//   "vladimir.png",
-//   "patrick.png",
-//   "preston.png",
-//   "anna.png",
-//   "thorsten.png",
-//   "daniel.png",
-//   "jung.png",
-//   "stephen.png",
-//   "judith.png",
-//   "nashi.png",
-//   "natalie.png",
-//   "bobby.png",
-//   "joseph.png",
-// ];
 
 const starCollectedAudio = new Audio("static/audios/starCollected.mp3");
 starCollectedAudio.playsInline = true;
@@ -173,8 +135,7 @@ function InitializeScene() {
   // Add a directional light
   const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
   scene.add(directionalLight);
-  directionalLight.position.y = 20;
-  directionalLight.position.z = -5;
+  directionalLight.position.set(0, 20, -5);
 
   // Add ambient light to the scene
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
@@ -227,9 +188,6 @@ function InitializeScene() {
       // Position the map section at the center of the scene, and at a distance of 50 units from the camera
       models.mapModel.position.set(0, 0, 0 - boxDepth / 2);
 
-      // texture.repeat.set(22, 22);
-      // texture.offset.set(0.75, 1);
-
       // Create an array to keep track of the map sections
       const mapSections = [models.mapModel];
 
@@ -262,7 +220,7 @@ function InitializeScene() {
       }
 
       // Create a function to move the map sections and remove any that are out of view
-      function moveMapSections() {
+      function deleteMapSections() {
         mapSections.forEach((section) => {
           // section.position.z += 0.1; // Move the section forward
           if (section.position.z > camera.position.z + 50) {
@@ -302,8 +260,10 @@ function InitializeScene() {
             generateBarricade();
           }
 
-          moveMapSections();
-          monitorBarricades();
+          if (!gameSettings.gameOver) {
+            deleteMapSections();
+            monitorBarricades();
+          }
           // Render the scene
           renderer.render(scene, camera);
         }
@@ -349,13 +309,11 @@ function InitializeScene() {
         // Create an array of points along the curve
         const points = curve.getPoints(300);
 
-        console.log(points);
-
         gsap
           .timeline({ repeat: 0, ease: "none" })
           .to(models.carModel.position, {
             duration: 1,
-            ease: "power1",
+            ease: "ease-in",
             motionPath: {
               path: points,
               type: "cubic",
@@ -371,6 +329,12 @@ function InitializeScene() {
       }
 
       gameSettings.gameOver = true;
+
+      gsap.to(camera.position, {
+        z: camera.position.z - gameSettings.carSpeed * 35,
+        duration: 0.9,
+        ease: "power1",
+      });
 
       setTimeout(() => {
         document.querySelector(".gameOver").classList.add("show");
